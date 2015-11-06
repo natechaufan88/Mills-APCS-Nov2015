@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=userinput\ first\ count
+comment1.target=void\ minAndMax(java.util.Scanner,\ int,\ int)
+numComments=2
