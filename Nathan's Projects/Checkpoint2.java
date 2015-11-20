@@ -6,7 +6,7 @@
 
 import java.util.*;
 
-public class FractionalCalculator {
+public class Checkpoint2 {
     public static void main(String[] args) {
         Scanner userinput = new Scanner(System.in);
         System.out.print("What is your expression? "); // prompt user for input
