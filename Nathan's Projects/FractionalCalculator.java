@@ -9,11 +9,11 @@ import java.util.*;
 public class FractionalCalculator {
     public static void main(String[] args) {
         Scanner userinput = new Scanner(System.in);
-        System.out.print("What is your expression? "); // prompt user for input
+        System.out.print("What is your expression? (\"quit\" to quit) "); // prompt user for input
         String expression = userinput.nextLine(); // user types in input
         while (!(expression.equals("quit"))) { // while user input is not "quit"
             System.out.println(produceAnswer(expression));
-            System.out.print("What is your expression? "); // prompt user for input
+            System.out.print("What is your expression? (\"quit\" to quit) "); // prompt user for input
             expression = userinput.nextLine(); // user types in input
         }
         System.out.println("You may now exit.");
@@ -59,7 +59,8 @@ public class FractionalCalculator {
         String whole = "0"; // default
         String numerator = "0"; // default
         String denominator = "1"; // default
-        if (underscore >= 0) {
+        if (underscore >= 0) { // underscore will equal -1 if the String is not found, 
+                               // so this tests that an underscore exists in the String
             whole = fraction.substring(0, underscore);
             if (slash >= 0) { // underscore and a slash ==> mixed number
                 numerator = fraction.substring(underscore + 1, slash);
