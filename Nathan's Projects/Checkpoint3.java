@@ -5,7 +5,7 @@
 
 import java.util.*; 
  
-public class FracCalc {
+public class Checkpoint3 {
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
@@ -43,10 +43,8 @@ public class FracCalc {
         int whole = mathWholes(firstWhole, secondWhole, operator);
         int numerator = mathNumerators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
         int denominator = mathDenominators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int improperNumerator = convertToImproperFractionNumerator(whole, numerator, denominator);
-        int newWhole = getWholeFromImproper(improperNumerator, denominator);
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
+        String newNumerator = String.valueOf(convertToImproperFractionNumerator(whole, numerator, denominator));
+        return newNumerator + "/" + denominator;
     }
     
     public static int mathWholes(int firstWhole, int secondWhole, String operator) {
@@ -67,20 +65,20 @@ public class FracCalc {
     public static int getWholeFromImproper(int numerator, int denominator) {
         int whole = 0;
         if (numerator > denominator) {
-            while (numerator % denominator > 1) {
+            while (numerator % denominator > denominator) {
                 whole++;
                 numerator -= denominator;
             }
-            whole -= 1;
         } else  if (numerator == denominator) {
             whole = 1;
         }
         return whole;
     }
     
-    public static int getNewNumerator(int whole, int numerator, int denominator) {
-        int a = whole * denominator;
-        numerator -= a;
+    public static int getNewNumerator(int numerator, int denominator) {
+        while (numerator % denominator > denominator) {
+            numerator -= denominator;
+        }
         return numerator;
     }
     
