@@ -1,13 +1,12 @@
- /* Nathan Chau
-  * November 20, 2015
+/* Nathan Chau
+  * November 30, 2015
   * Fractional Calculator
   */
 
 import java.util.*; 
  
 public class FracCalc {
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         // TODO: Read the input from the user and call produceAnswer with an equation
         Scanner userinput = new Scanner(System.in);
         System.out.print("What is your expression? (\"quit\" to quit) "); // prompt user for input
@@ -40,48 +39,87 @@ public class FracCalc {
         int secondWhole = parseFractionForWholeNumber(secondFraction);
         int secondNumerator = parseFractionForNumerator(secondFraction);
         int secondDenominator = parseFractionForDenominator(secondFraction);
-        int whole = mathWholes(firstWhole, secondWhole, operator);
-        int numerator = mathNumerators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int denominator = mathDenominators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int improperNumerator = convertToImproperFractionNumerator(whole, numerator, denominator);
-        int newWhole = getWholeFromImproper(improperNumerator, denominator);
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
-    }
-    
-    public static int mathWholes(int firstWhole, int secondWhole, String operator) {
-        // method adds/subtracts/multiplies/divides whole numbers based on input operator
-        int whole;
-        if (operator.equals("+")) {
-            whole = firstWhole + secondWhole;
-        } else if (operator.equals("-")) {
-            whole = firstWhole - secondWhole;
-        } else if (operator.equals("*")) {
-            whole = firstWhole * secondWhole;
+        int firstImproperNumerator = convertToImproperFractionNumerator(firstWhole, firstNumerator, firstDenominator);
+        int secondImproperNumerator = convertToImproperFractionNumerator(secondWhole, secondNumerator, secondDenominator);
+        //int commonDenominator = getCommonDenominator(firstDenominator, secondDenominator);
+        int adjustedFirstImproperNumerator = adjustImproperNumerator(firstNumerator, secondDenominator);
+        int adjustedSecondImproperNumerator = adjustImproperNumerator(secondNumerator, firstDenominator);
+        int finalImproperNumerator = mathNumerators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        int finalDenominator = mathDenominators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        int finalWhole;
+        if (finalImproperNumerator != 0 && finalImproperNumerator > finalDenominator) {
+            finalWhole = getWholeFromImproper(finalImproperNumerator, finalDenominator);
         } else {
-            whole = firstWhole / secondWhole;
+            finalWhole = 0;
         }
-        return whole;
+        String finalNumerator = String.valueOf(getFinalNumerator(finalImproperNumerator, finalDenominator));
+        if (Integer.parseInt(finalNumerator) != 0) {
+            return String.valueOf(finalWhole) + "_" + finalNumerator + "/" + finalDenominator;
+        } else {
+            return String.valueOf(finalWhole);
+        }
     }
     
-    public static int getWholeFromImproper(int numerator, int denominator) {
-        int whole = 0;
-        if (numerator > denominator) {
-            while (numerator % denominator > 1) {
-                whole++;
-                numerator -= denominator;
+    /*
+    public static String simplifyNumerator(int numerator, int denominator) {
+        while (numerator % 2 == 0 && denominator % 2 == 0) { // i.e. 4/6
+            numerator /= 2;
+            denominator /= 2;
+        }
+        if (numerator % 2 != 0 && denominator % 2 != 0) { // i.e. 3/9, 15/25
+            if (denominator % numerator == 0) { // for fractions 1/#
+                numerator /= numerator;
+                denominator /= numerator;
+            } 
+        }
+        if (numerator % 2 != 0 && denominator % 2 == 0) { // i.e. 3/6
+            if (denominator % numerator == 0) { // for fractions 1/#
+                numerator /= numerator;
+                denominator /= numerator;
             }
-            whole -= 1;
-        } else  if (numerator == denominator) {
-            whole = 1;
         }
-        return whole;
+        if (numerator % 2 == 0 && denominator % 2 != 0) { //i.e. 6/9, 18/27
+            
+        }
+        return String.valueOf(numerator);
     }
     
-    public static int getNewNumerator(int whole, int numerator, int denominator) {
-        int a = whole * denominator;
-        numerator -= a;
-        return numerator;
+    public static String simplifyDenominator(int numerator, int denominator) {
+        while (numerator % 2 == 0 && denominator % 2 == 0) { // i.e. 4/6
+            numerator /= 2;
+            denominator /= 2;
+        }
+        if (numerator % 2 != 0 && denominator % 2 != 0) { // i.e. 3/9, 15/25
+            if (denominator % numerator == 0) { // for fractions 1/#
+                numerator /= numerator;
+                denominator /= numerator;
+            }
+        }
+        if (numerator % 2 != 0 && denominator % 2 == 0) { // i.e. 3/6
+            if (denominator % numerator == 0) { // for fractions 1/#
+                numerator /= numerator;
+                denominator /= numerator;
+            }
+        }
+        if (numerator % 2 == 0 && denominator % 2 != 0) { //i.e. 6/9, 18/27
+            
+        }
+        return String.valueOf(denominator);
+    }
+    */
+   
+    public static int getCommonDenominator(int firstDenominator, int secondDenominator) {
+        return firstDenominator * secondDenominator;
+    }
+    
+    public static int adjustImproperNumerator(int numerator, int otherDenominator) {
+        return numerator * otherDenominator;
+    }
+    
+    public static int getFinalNumerator(int improperNumerator, int denominator) {
+        return improperNumerator % denominator;
     }
     
     public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
@@ -89,6 +127,10 @@ public class FracCalc {
         return numerator;
     }
     
+    public static int getWholeFromImproper(int improperNumerator, int denominator) {
+        return improperNumerator/denominator;
+    }
+
     public static int mathNumerators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {
         firstNumerator *= secondDenominator;
@@ -145,15 +187,16 @@ public class FracCalc {
     }
     
     public static int parseFractionForWholeNumber(String fraction) {
+        // method returns integer of the whole number
         int length = fraction.length();
         int underscore = fraction.indexOf("_");
         int slash = fraction.indexOf("/");
         String whole = "0"; // default
-        if (underscore >= 0) { // underscore will equal -1 if the String is not found, 
+        if (underscore != -1) { // underscore will equal -1 if the String is not found, 
                                // so this tests that an underscore exists in the String
             whole = fraction.substring(0, underscore);
         } else {
-            if (slash >=0) { // no underscore and a slash ==> fraction
+            if (slash != -1) { // no underscore and a slash ==> fraction
                 whole = "0";
             } else { // no underscore and no slash ==> whole number
                 whole = fraction.substring(0, length);
@@ -164,23 +207,39 @@ public class FracCalc {
     }
     
     public static int parseFractionForNumerator(String fraction) {
+        // method returns integer of numerator of a fraction
         int length = fraction.length();
         int underscore = fraction.indexOf("_");
         int slash = fraction.indexOf("/");
         String numerator = "0"; // default
-        if (underscore >= 0) { // underscore will equal -1 if the String is not found, 
+        if (underscore != -1) { // underscore will equal -1 if the String is not found, 
                                // so this tests that an underscore exists in the String
-            if (slash >= 0) { // underscore and a slash ==> mixed number
+            if (slash != -1) { // underscore and a slash ==> mixed number
                 numerator = fraction.substring(underscore + 1, slash);
             }
         } else {
-            if (slash >=0) { // no underscore and a slash ==> fraction
+            if (slash != -1) { // no underscore and a slash ==> fraction
                 numerator = fraction.substring(0, slash);
             } else { // no underscore and no slash ==> whole number
                 numerator = "0";
             }
         }
         int numeratorNumber = Integer.parseInt(numerator);
+        String whole = "0"; // default
+        if (underscore != -1) { // underscore will equal -1 if the String is not found, 
+                               // so this tests that an underscore exists in the String
+            whole = fraction.substring(0, underscore);
+        } else {
+            if (slash != -1) { // no underscore and a slash ==> fraction
+                whole = "0";
+            } else { // no underscore and no slash ==> whole number
+                whole = fraction.substring(0, length);
+            }
+        }
+        int wholeNumber = Integer.parseInt(whole);
+        if (wholeNumber < 0) {
+            numeratorNumber = -numeratorNumber;
+        }
         return numeratorNumber;
     }
     
@@ -189,13 +248,13 @@ public class FracCalc {
         int underscore = fraction.indexOf("_");
         int slash = fraction.indexOf("/");
         String denominator = "1"; // default
-        if (underscore >= 0) { // underscore will equal -1 if the String is not found, 
+        if (underscore != -1) { // underscore will equal -1 if the String is not found, 
                                // so this tests that an underscore exists in the String
-            if (slash >= 0) { // underscore and a slash ==> mixed number
+            if (slash != -1) { // underscore and a slash ==> mixed number
                 denominator = fraction.substring(slash + 1, length);
             }
         } else {
-            if (slash >=0) { // no underscore and a slash ==> fraction
+            if (slash != -1) { // no underscore and a slash ==> fraction
                 denominator = fraction.substring(slash + 1, length);
             } else { // no underscore and no slash ==> whole number
                 denominator = "1";
