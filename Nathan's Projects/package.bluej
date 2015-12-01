@@ -12,8 +12,13 @@ package.showUses=true
 project.charset=UTF-8
 target1.editor.height=700
 target1.editor.width=900
+<<<<<<< HEAD
 target1.editor.x=223
 target1.editor.y=182
+=======
+target1.editor.x=426
+target1.editor.y=4
+>>>>>>> origin/master
 target1.height=50
 target1.name=FracCalc
 target1.naviview.expanded=false

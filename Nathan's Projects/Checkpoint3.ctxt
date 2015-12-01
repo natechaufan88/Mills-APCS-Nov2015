@@ -11,26 +11,14 @@ comment12.params=fraction
 comment12.target=int\ parseFractionForNumerator(java.lang.String)
 comment13.params=fraction
 comment13.target=int\ parseFractionForDenominator(java.lang.String)
-<<<<<<< HEAD
-comment2.params=numerator\ denominator
-comment2.target=int\ getWholeFromImproper(int,\ int)
-comment2.text=\r\n\ \ \ \ public\ static\ int\ leastCommonDenominator(int\ numerator,\ int\ denominator)\ {\r\n\ \ \ \ \ \ \ \ int\ i;\r\n\ \ \ \ \ \ \ \ if\ (denominator\ >\ numerator)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ i\ \=\ numerator;\r\n\ \ \ \ \ \ \ \ }\ else\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ i\ \=\ denominator;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ for\ (int\ j\ \=\ i;\ j\ >\ 0;\ j--)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (numerator\ %\ j\ \=\=\ 0\ &&\ denominator\ %\ j\ \=\=\ 0)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ j;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ -1;\r\n\ \ \ \ }\r\n
-comment3.params=whole\ numerator\ denominator
-comment3.target=int\ getNewNumerator(int,\ int,\ int)
-comment4.params=whole\ numerator\ denominator
-comment4.target=int\ convertToImproperFractionNumerator(int,\ int,\ int)
-comment5.params=firstWhole\ secondWhole\ operator
-comment5.target=int\ mathWholes(int,\ int,\ java.lang.String)
-=======
 comment2.params=firstWhole\ secondWhole\ operator
 comment2.target=int\ mathWholes(int,\ int,\ java.lang.String)
 comment3.params=numerator\ denominator
 comment3.target=int\ getWholeFromImproper(int,\ int)
-comment4.params=whole\ numerator\ denominator
-comment4.target=int\ getNewNumerator(int,\ int,\ int)
+comment4.params=numerator\ denominator
+comment4.target=int\ getNewNumerator(int,\ int)
 comment5.params=whole\ numerator\ denominator
 comment5.target=int\ convertToImproperFractionNumerator(int,\ int,\ int)
->>>>>>> origin/master
 comment6.params=firstNumerator\ secondNumerator\ firstDenominator\ secondDenominator\ operator
 comment6.target=int\ mathNumerators(int,\ int,\ int,\ int,\ java.lang.String)
 comment7.params=firstNumerator\ secondNumerator\ firstDenominator\ secondDenominator\ operator
