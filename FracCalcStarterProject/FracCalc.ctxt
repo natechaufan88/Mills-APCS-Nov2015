@@ -1,0 +1,31 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=expression
+comment1.target=java.lang.String\ produceAnswer(java.lang.String)
+comment10.params=expression
+comment10.target=java.lang.String\ parseExpressionForSecondFraction(java.lang.String)
+comment11.params=fraction
+comment11.target=int\ parseFractionForWholeNumber(java.lang.String)
+comment12.params=fraction
+comment12.target=int\ parseFractionForNumerator(java.lang.String)
+comment13.params=fraction
+comment13.target=int\ parseFractionForDenominator(java.lang.String)
+comment2.params=numerator\ denominator
+comment2.target=int\ getWholeFromImproper(int,\ int)
+comment2.text=\r\n\ \ \ \ public\ static\ int\ leastCommonDenominator(int\ numerator,\ int\ denominator)\ {\r\n\ \ \ \ \ \ \ \ int\ i;\r\n\ \ \ \ \ \ \ \ if\ (denominator\ >\ numerator)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ i\ \=\ numerator;\r\n\ \ \ \ \ \ \ \ }\ else\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ i\ \=\ denominator;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ for\ (int\ j\ \=\ i;\ j\ >\ 0;\ j--)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ if\ (numerator\ %\ j\ \=\=\ 0\ &&\ denominator\ %\ j\ \=\=\ 0)\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ j;\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ -1;\r\n\ \ \ \ }\r\n
+comment3.params=whole\ numerator\ denominator
+comment3.target=int\ getNewNumerator(int,\ int,\ int)
+comment4.params=whole\ numerator\ denominator
+comment4.target=int\ convertToImproperFractionNumerator(int,\ int,\ int)
+comment5.params=firstWhole\ secondWhole\ operator
+comment5.target=int\ mathWholes(int,\ int,\ java.lang.String)
+comment6.params=firstNumerator\ secondNumerator\ firstDenominator\ secondDenominator\ operator
+comment6.target=int\ mathNumerators(int,\ int,\ int,\ int,\ java.lang.String)
+comment7.params=firstNumerator\ secondNumerator\ firstDenominator\ secondDenominator\ operator
+comment7.target=int\ mathDenominators(int,\ int,\ int,\ int,\ java.lang.String)
+comment8.params=expression
+comment8.target=java.lang.String\ parseExpressionForFirstFraction(java.lang.String)
+comment9.params=expression
+comment9.target=java.lang.String\ parseExpressionForOperator(java.lang.String)
+numComments=14
