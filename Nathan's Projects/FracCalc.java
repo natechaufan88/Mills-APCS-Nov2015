@@ -39,181 +39,53 @@ public class FracCalc {
         int secondWhole = parseFractionForWholeNumber(secondFraction);
         int secondNumerator = parseFractionForNumerator(secondFraction);
         int secondDenominator = parseFractionForDenominator(secondFraction);
-<<<<<<< HEAD
+        /*System.out.println(firstWhole);
+        System.out.println(firstNumerator);
+        System.out.println(firstDenominator);
+        System.out.println(secondWhole);
+        System.out.println(secondNumerator);
+        System.out.println(secondDenominator);*/
         int firstImproperNumerator = convertToImproperFractionNumerator(firstWhole, firstNumerator, firstDenominator);
         int secondImproperNumerator = convertToImproperFractionNumerator(secondWhole, secondNumerator, secondDenominator);
         //int commonDenominator = getCommonDenominator(firstDenominator, secondDenominator);
-        int adjustedFirstImproperNumerator = adjustImproperNumerator(firstNumerator, secondDenominator);
-        int adjustedSecondImproperNumerator = adjustImproperNumerator(secondNumerator, firstDenominator);
+        int adjustedFirstImproperNumerator = adjustImproperNumerator(operator, firstImproperNumerator, secondDenominator);
+        //System.out.println(adjustedFirstImproperNumerator);
+        int adjustedSecondImproperNumerator = adjustImproperNumerator(operator, secondImproperNumerator, firstDenominator);
+        //System.out.println(adjustedSecondImproperNumerator);
         int finalImproperNumerator = mathNumerators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
             firstDenominator, secondDenominator, operator);
+        //System.out.println(finalImproperNumerator);
         int finalDenominator = mathDenominators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
             firstDenominator, secondDenominator, operator);
+        //System.out.println(finalDenominator);
         int finalWhole;
-        if (finalImproperNumerator != 0 && finalImproperNumerator > finalDenominator) {
+        if (finalImproperNumerator != 0) { //&& finalImproperNumerator > finalDenominator) {
             finalWhole = getWholeFromImproper(finalImproperNumerator, finalDenominator);
         } else {
             finalWhole = 0;
         }
         String finalNumerator = String.valueOf(getFinalNumerator(finalImproperNumerator, finalDenominator));
         if (Integer.parseInt(finalNumerator) != 0) {
-            return String.valueOf(finalWhole) + "_" + finalNumerator + "/" + finalDenominator;
+            if (finalWhole != 0) {
+                return String.valueOf(finalWhole) + "_" + finalNumerator + "/" + finalDenominator;
+            } else {
+                return finalNumerator + "/" + finalDenominator;
+            }
         } else {
             return String.valueOf(finalWhole);
         }
     }
-    
-    /*
-    public static String simplifyNumerator(int numerator, int denominator) {
-        while (numerator % 2 == 0 && denominator % 2 == 0) { // i.e. 4/6
-            numerator /= 2;
-            denominator /= 2;
-        }
-        if (numerator % 2 != 0 && denominator % 2 != 0) { // i.e. 3/9, 15/25
-            if (denominator % numerator == 0) { // for fractions 1/#
-                numerator /= numerator;
-                denominator /= numerator;
-            } 
-=======
-        int whole = mathWholes(firstWhole, secondWhole, operator);
-        int numerator = mathNumerators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int denominator = mathDenominators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int improperNumerator = convertToImproperFractionNumerator(whole, numerator, denominator);
-<<<<<<< HEAD
-        int newWhole;
-        if (numerator != 0 && numerator > denominator) {
-            newWhole = getWholeFromImproper(improperNumerator, denominator);
-        } else {
-            newWhole = whole;
-        }
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        if (Integer.parseInt(newNumerator) != 0) {
-            return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
-        } else {
-            return String.valueOf(newWhole);
-        }
-    }
-    
-    /*
-    public static int leastCommonDenominator(int numerator, int denominator) {
-        int i;
-        if (denominator > numerator) {
-            i = numerator;
-        } else {
-            i = denominator;
-        }
-        for (int j = i; j > 0; j--) {
-            if (numerator % j == 0 && denominator % j == 0) {
-                return j;
-            }
-        }
-        return -1;
-    }
-    */
-    
-    public static int getWholeFromImproper(int numerator, int denominator) {
-        int whole = 0;
-        if (numerator > denominator) {
-            while (numerator % denominator > 1) {
-                whole++;
-                numerator -= denominator;
-            }
-            whole -= 1;
-        } else  if (numerator == denominator) {
-            whole = 1;
-        }
-        return whole;
-    }
-    
-    public static int getNewNumerator(int whole, int numerator, int denominator) {
-        int a = whole * denominator;
-        numerator -= a;
-        return numerator;
-    }
-    
-    public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
-        numerator = (denominator * whole) + numerator;
-        return numerator;
-    }
-    
-        public static int mathWholes(int firstWhole, int secondWhole, String operator) {
-=======
-        int newWhole = getWholeFromImproper(improperNumerator, denominator);
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
-    }
-    
-    public static int mathWholes(int firstWhole, int secondWhole, String operator) {
->>>>>>> origin/master
-        // method adds/subtracts/multiplies/divides whole numbers based on input operator
-        int whole;
-        if (operator.equals("+")) {
-            whole = firstWhole + secondWhole;
-        } else if (operator.equals("-")) {
-            whole = firstWhole - secondWhole;
-        } else if (operator.equals("*")) {
-            whole = firstWhole * secondWhole;
-        } else {
-            if (firstWhole == 0 && secondWhole == 0) {
-                whole = 0;
-            } else {
-                whole = firstWhole / secondWhole;
-            }
->>>>>>> origin/master
-        }
-        if (numerator % 2 != 0 && denominator % 2 == 0) { // i.e. 3/6
-            if (denominator % numerator == 0) { // for fractions 1/#
-                numerator /= numerator;
-                denominator /= numerator;
-            }
-        }
-        if (numerator % 2 == 0 && denominator % 2 != 0) { //i.e. 6/9, 18/27
-            
-        }
-        return String.valueOf(numerator);
-    }
-    
-<<<<<<< HEAD
-    public static String simplifyDenominator(int numerator, int denominator) {
-        while (numerator % 2 == 0 && denominator % 2 == 0) { // i.e. 4/6
-            numerator /= 2;
-            denominator /= 2;
-        }
-        if (numerator % 2 != 0 && denominator % 2 != 0) { // i.e. 3/9, 15/25
-            if (denominator % numerator == 0) { // for fractions 1/#
-                numerator /= numerator;
-                denominator /= numerator;
-=======
-<<<<<<< HEAD
-=======
-    public static int getWholeFromImproper(int numerator, int denominator) {
-        int whole = 0;
-        if (numerator > denominator) {
-            while (numerator % denominator > 1) {
-                whole++;
-                numerator -= denominator;
->>>>>>> origin/master
-            }
-        }
-        if (numerator % 2 != 0 && denominator % 2 == 0) { // i.e. 3/6
-            if (denominator % numerator == 0) { // for fractions 1/#
-                numerator /= numerator;
-                denominator /= numerator;
-            }
-        }
-        if (numerator % 2 == 0 && denominator % 2 != 0) { //i.e. 6/9, 18/27
-            
-        }
-        return String.valueOf(denominator);
-    }
-    */
    
     public static int getCommonDenominator(int firstDenominator, int secondDenominator) {
         return firstDenominator * secondDenominator;
     }
     
-    public static int adjustImproperNumerator(int numerator, int otherDenominator) {
-        return numerator * otherDenominator;
+    public static int adjustImproperNumerator(String operator, int numerator, int otherDenominator) {
+        if (operator.equals("+") || operator.equals("-")) {
+            return numerator * otherDenominator;
+        } else {
+            return numerator;
+        }
     }
     
     public static int getFinalNumerator(int improperNumerator, int denominator) {
@@ -224,19 +96,13 @@ public class FracCalc {
         numerator = (denominator * whole) + numerator;
         return numerator;
     }
-    
-<<<<<<< HEAD
+
     public static int getWholeFromImproper(int improperNumerator, int denominator) {
         return improperNumerator/denominator;
     }
 
-=======
->>>>>>> origin/master
->>>>>>> origin/master
     public static int mathNumerators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {
-        firstNumerator *= secondDenominator;
-        secondNumerator *= firstDenominator;
         int numerator;
         if (operator.equals("+")) {
             numerator = firstNumerator + secondNumerator;
@@ -253,8 +119,8 @@ public class FracCalc {
     public static int mathDenominators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {
         int denominator;
-        firstNumerator *= secondDenominator;
-        secondNumerator *= firstDenominator;
+        //firstNumerator *= secondDenominator;
+        //secondNumerator *= firstDenominator;
         if (operator.equals("+") || operator.equals("-") || operator.equals("*")) {
             denominator = firstDenominator * secondDenominator;
         } else {
