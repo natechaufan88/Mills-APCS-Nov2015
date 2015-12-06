@@ -30,6 +30,7 @@ public class FracCalc {
         int secondWhole = parseFractionForWholeNumber(secondFraction);
         int secondNumerator = parseFractionForNumerator(secondFraction);
         int secondDenominator = parseFractionForDenominator(secondFraction);
+<<<<<<< HEAD
         int firstImproperNumerator = convertToImproperFractionNumerator(firstWhole, firstNumerator, firstDenominator);
         int secondImproperNumerator = convertToImproperFractionNumerator(secondWhole, secondNumerator, secondDenominator);
         int adjustedFirstImproperNumerator = adjustImproperNumerator(operator, firstImproperNumerator, secondDenominator);
@@ -38,11 +39,33 @@ public class FracCalc {
             firstDenominator, secondDenominator, operator);
         int finalDenominator = mathDenominators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
             firstDenominator, secondDenominator, operator);
+=======
+        /*System.out.println(firstWhole);
+        System.out.println(firstNumerator);
+        System.out.println(firstDenominator);
+        System.out.println(secondWhole);
+        System.out.println(secondNumerator);
+        System.out.println(secondDenominator);*/
+        int firstImproperNumerator = convertToImproperFractionNumerator(firstWhole, firstNumerator, firstDenominator);
+        int secondImproperNumerator = convertToImproperFractionNumerator(secondWhole, secondNumerator, secondDenominator);
+        //int commonDenominator = getCommonDenominator(firstDenominator, secondDenominator);
+        int adjustedFirstImproperNumerator = adjustImproperNumerator(operator, firstImproperNumerator, secondDenominator);
+        //System.out.println(adjustedFirstImproperNumerator);
+        int adjustedSecondImproperNumerator = adjustImproperNumerator(operator, secondImproperNumerator, firstDenominator);
+        //System.out.println(adjustedSecondImproperNumerator);
+        int finalImproperNumerator = mathNumerators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        //System.out.println(finalImproperNumerator);
+        int finalDenominator = mathDenominators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        //System.out.println(finalDenominator);
+>>>>>>> origin/master
         int finalWhole;
         if (finalImproperNumerator != 0) { //&& finalImproperNumerator > finalDenominator) {
             finalWhole = getWholeFromImproper(finalImproperNumerator, finalDenominator);
         } else {
             finalWhole = 0;
+<<<<<<< HEAD
         }
         //System.out.println(finalWhole);
         String stringNumerator = String.valueOf(getFinalNumerator(finalImproperNumerator, finalDenominator));
@@ -61,12 +84,22 @@ public class FracCalc {
                 return String.valueOf(finalWhole) + "_" + numerator + "/" + denominator;
             } else {
                 return numerator + "/" + denominator;
+=======
+        }
+        String finalNumerator = String.valueOf(getFinalNumerator(finalImproperNumerator, finalDenominator));
+        if (Integer.parseInt(finalNumerator) != 0) {
+            if (finalWhole != 0) {
+                return String.valueOf(finalWhole) + "_" + finalNumerator + "/" + finalDenominator;
+            } else {
+                return finalNumerator + "/" + finalDenominator;
+>>>>>>> origin/master
             }
         } else {
             return String.valueOf(finalWhole);
         }
     }
    
+<<<<<<< HEAD
     public static int reduceNumerator(int numerator, int denominator) {
         int start;
         int greatestCommonFactor = 1;
@@ -102,10 +135,9 @@ public class FracCalc {
         }
         return denominator / greatestCommonFactor;
     }    
-    
-    public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
-        numerator = (denominator * whole) + numerator;
-        return numerator;
+=======
+    public static int getCommonDenominator(int firstDenominator, int secondDenominator) {
+        return firstDenominator * secondDenominator;
     }
     
     public static int adjustImproperNumerator(String operator, int numerator, int otherDenominator) {
@@ -114,7 +146,32 @@ public class FracCalc {
         } else {
             return numerator;
         }
+    }
+    
+    public static int getFinalNumerator(int improperNumerator, int denominator) {
+        return improperNumerator % denominator;
+    }
+>>>>>>> origin/master
+    
+    public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
+        numerator = (denominator * whole) + numerator;
+        return numerator;
+    }
+<<<<<<< HEAD
+    
+    public static int adjustImproperNumerator(String operator, int numerator, int otherDenominator) {
+        if (operator.equals("+") || operator.equals("-")) {
+            return numerator * otherDenominator;
+        } else {
+            return numerator;
+        }
     }    
+=======
+
+    public static int getWholeFromImproper(int improperNumerator, int denominator) {
+        return improperNumerator/denominator;
+    }
+>>>>>>> origin/master
 
     public static int mathNumerators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {

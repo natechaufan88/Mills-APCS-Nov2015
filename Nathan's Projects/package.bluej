@@ -3,17 +3,27 @@ objectbench.height=76
 objectbench.width=658
 package.editor.height=400
 package.editor.width=560
+<<<<<<< HEAD
 package.editor.x=151
 package.editor.y=165
+=======
+package.editor.x=117
+package.editor.y=65
+>>>>>>> origin/master
 package.numDependencies=0
 package.numTargets=6
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
-target1.editor.height=700
+target1.editor.height=728
 target1.editor.width=900
+<<<<<<< HEAD
 target1.editor.x=334
 target1.editor.y=10
+=======
+target1.editor.x=426
+target1.editor.y=4
+>>>>>>> origin/master
 target1.height=50
 target1.name=FracCalc
 target1.naviview.expanded=false
@@ -75,8 +85,18 @@ target5.typeParameters=
 target5.width=100
 target5.x=10
 target5.y=190
+<<<<<<< HEAD
 target6.height=50
 target6.name=Checkpoint3
+=======
+target6.editor.height=700
+target6.editor.width=900
+target6.editor.x=117
+target6.editor.y=45
+target6.height=50
+target6.name=Checkpoint3
+target6.naviview.expanded=false
+>>>>>>> origin/master
 target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
