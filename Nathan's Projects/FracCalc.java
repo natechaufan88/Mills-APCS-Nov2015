@@ -1,13 +1,12 @@
 /* Nathan Chau
-  * November 30, 2015
+  * December 6, 2015
   * Fractional Calculator
   */
 
 import java.util.*; 
  
 public class FracCalc {
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         // TODO: Read the input from the user and call produceAnswer with an equation
         Scanner userinput = new Scanner(System.in);
         System.out.print("What is your expression? (\"quit\" to quit) "); // prompt user for input
@@ -20,15 +19,6 @@ public class FracCalc {
         System.out.println("You may now exit.");
     }
     
-    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
-    // This function takes a String 'input' and produces the result
-    //
-    // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
-    //      e.g. input ==> "1/2 + 3/4"
-    //        
-    // The function should return the result of the fraction after it has been calculated
-    //      e.g. return ==> "1_1/4"
-    
     public static String produceAnswer(String expression) {   
         // assign first operand, operator, and second operand to variables
         String firstFraction = parseExpressionForFirstFraction(expression);
@@ -40,126 +30,94 @@ public class FracCalc {
         int secondWhole = parseFractionForWholeNumber(secondFraction);
         int secondNumerator = parseFractionForNumerator(secondFraction);
         int secondDenominator = parseFractionForDenominator(secondFraction);
-        int whole = mathWholes(firstWhole, secondWhole, operator);
-        int numerator = mathNumerators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int denominator = mathDenominators(firstNumerator, secondNumerator, firstDenominator, secondDenominator, operator);
-        int improperNumerator = convertToImproperFractionNumerator(whole, numerator, denominator);
-<<<<<<< HEAD
-        int newWhole;
-        if (numerator != 0 && numerator > denominator) {
-            newWhole = getWholeFromImproper(improperNumerator, denominator);
+        int firstImproperNumerator = convertToImproperFractionNumerator(firstWhole, firstNumerator, firstDenominator);
+        int secondImproperNumerator = convertToImproperFractionNumerator(secondWhole, secondNumerator, secondDenominator);
+        int adjustedFirstImproperNumerator = adjustImproperNumerator(operator, firstImproperNumerator, secondDenominator);
+        int adjustedSecondImproperNumerator = adjustImproperNumerator(operator, secondImproperNumerator, firstDenominator);
+        int finalImproperNumerator = mathNumerators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        int finalDenominator = mathDenominators(adjustedFirstImproperNumerator, adjustedSecondImproperNumerator,
+            firstDenominator, secondDenominator, operator);
+        int finalWhole;
+        if (finalImproperNumerator != 0) { //&& finalImproperNumerator > finalDenominator) {
+            finalWhole = getWholeFromImproper(finalImproperNumerator, finalDenominator);
         } else {
-            newWhole = whole;
+            finalWhole = 0;
         }
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        if (Integer.parseInt(newNumerator) != 0) {
-            return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
-        } else {
-            return String.valueOf(newWhole);
+        //System.out.println(finalWhole);
+        String stringNumerator = String.valueOf(getFinalNumerator(finalImproperNumerator, finalDenominator));
+        int finalNumerator = Integer.parseInt(stringNumerator);
+        //System.out.println(finalNumerator);
+        int numerator = reduceNumerator(finalNumerator, finalDenominator);
+        //System.out.println(numerator);
+        int denominator = reduceDenominator(finalNumerator, finalDenominator);
+        //System.out.println(denominator);
+        if (numerator < 0 && denominator < 0) {
+            numerator = -numerator;
+            denominator = -denominator;
         }
-    }
-    
-    /*
-    public static int leastCommonDenominator(int numerator, int denominator) {
-        int i;
-        if (denominator > numerator) {
-            i = numerator;
-        } else {
-            i = denominator;
-        }
-        for (int j = i; j > 0; j--) {
-            if (numerator % j == 0 && denominator % j == 0) {
-                return j;
-            }
-        }
-        return -1;
-    }
-    */
-    
-    public static int getWholeFromImproper(int numerator, int denominator) {
-        int whole = 0;
-        if (numerator > denominator) {
-            while (numerator % denominator > 1) {
-                whole++;
-                numerator -= denominator;
-            }
-            whole -= 1;
-        } else  if (numerator == denominator) {
-            whole = 1;
-        }
-        return whole;
-    }
-    
-    public static int getNewNumerator(int whole, int numerator, int denominator) {
-        int a = whole * denominator;
-        numerator -= a;
-        return numerator;
-    }
-    
-    public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
-        numerator = (denominator * whole) + numerator;
-        return numerator;
-    }
-    
-        public static int mathWholes(int firstWhole, int secondWhole, String operator) {
-=======
-        int newWhole = getWholeFromImproper(improperNumerator, denominator);
-        String newNumerator = String.valueOf(getNewNumerator(newWhole, improperNumerator, denominator));
-        return String.valueOf(newWhole) + "_" + newNumerator + "/" + denominator;
-    }
-    
-    public static int mathWholes(int firstWhole, int secondWhole, String operator) {
->>>>>>> origin/master
-        // method adds/subtracts/multiplies/divides whole numbers based on input operator
-        int whole;
-        if (operator.equals("+")) {
-            whole = firstWhole + secondWhole;
-        } else if (operator.equals("-")) {
-            whole = firstWhole - secondWhole;
-        } else if (operator.equals("*")) {
-            whole = firstWhole * secondWhole;
-        } else {
-            if (firstWhole == 0 && secondWhole == 0) {
-                whole = 0;
+        if (numerator != 0) {
+            if (finalWhole != 0) {
+                return String.valueOf(finalWhole) + "_" + numerator + "/" + denominator;
             } else {
-                whole = firstWhole / secondWhole;
+                return numerator + "/" + denominator;
             }
+        } else {
+            return String.valueOf(finalWhole);
         }
-        return whole;
     }
-    
-<<<<<<< HEAD
-=======
-    public static int getWholeFromImproper(int numerator, int denominator) {
-        int whole = 0;
+   
+    public static int reduceNumerator(int numerator, int denominator) {
+        int start;
+        int greatestCommonFactor = 1;
         if (numerator > denominator) {
-            while (numerator % denominator > 1) {
-                whole++;
-                numerator -= denominator;
-            }
-            whole -= 1;
-        } else  if (numerator == denominator) {
-            whole = 1;
+            start = numerator;
+        } else {
+            start = denominator;
         }
-        return whole;
+        while (greatestCommonFactor != start) {
+            if (numerator % start == 0 && denominator % start == 0) {
+                greatestCommonFactor = start;
+                start++;
+            }
+            start--;
+        }
+        return numerator / greatestCommonFactor;
     }
     
-    public static int getNewNumerator(int whole, int numerator, int denominator) {
-        int a = whole * denominator;
-        numerator -= a;
-        return numerator;
-    }
+    public static int reduceDenominator(int numerator, int denominator) {
+        int start;
+        int greatestCommonFactor = 1;
+        if (numerator > denominator) {
+            start = numerator;
+        } else {
+            start = denominator;
+        }
+        while (greatestCommonFactor != start) {
+            if (numerator % start == 0 && denominator % start == 0) {
+                greatestCommonFactor = start;
+                start++;
+            }
+            start--;
+        }
+        return denominator / greatestCommonFactor;
+    }    
     
     public static int convertToImproperFractionNumerator(int whole, int numerator, int denominator) {
         numerator = (denominator * whole) + numerator;
         return numerator;
     }
     
->>>>>>> origin/master
+    public static int adjustImproperNumerator(String operator, int numerator, int otherDenominator) {
+        if (operator.equals("+") || operator.equals("-")) {
+            return numerator * otherDenominator;
+        } else {
+            return numerator;
+        }
+    }    
+
     public static int mathNumerators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {
-        firstNumerator *= secondDenominator;
-        secondNumerator *= firstDenominator;
         int numerator;
         if (operator.equals("+")) {
             numerator = firstNumerator + secondNumerator;
@@ -176,14 +134,25 @@ public class FracCalc {
     public static int mathDenominators(int firstNumerator, int secondNumerator, int firstDenominator,
         int secondDenominator, String operator) {
         int denominator;
-        firstNumerator *= secondDenominator;
-        secondNumerator *= firstDenominator;
+        //firstNumerator *= secondDenominator;
+        //secondNumerator *= firstDenominator;
         if (operator.equals("+") || operator.equals("-") || operator.equals("*")) {
             denominator = firstDenominator * secondDenominator;
         } else {
             denominator = firstDenominator * secondNumerator;
         }
         return denominator;
+    }
+    
+    public static int getWholeFromImproper(int improperNumerator, int denominator) {
+        return improperNumerator/denominator;
+    }    
+    
+    public static int getFinalNumerator(int improperNumerator, int denominator) {
+        if (denominator < 0 && improperNumerator > 0 || denominator > 0 && improperNumerator < 0) {
+            improperNumerator = -improperNumerator;
+        }
+        return improperNumerator % denominator;
     }
     
     public static String parseExpressionForFirstFraction(String expression) {
