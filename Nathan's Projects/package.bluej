@@ -3,8 +3,28 @@ objectbench.height=76
 objectbench.width=658
 package.editor.height=400
 package.editor.width=560
+<<<<<<< HEAD
 package.editor.x=117
 package.editor.y=65
+=======
+<<<<<<< HEAD
+package.editor.x=181
+package.editor.y=236
+=======
+<<<<<<< HEAD
+package.editor.x=292
+package.editor.y=105
+=======
+<<<<<<< HEAD
+package.editor.x=151
+package.editor.y=165
+=======
+package.editor.x=117
+package.editor.y=65
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
 package.numDependencies=0
 package.numTargets=7
 package.showExtends=true
@@ -38,56 +58,80 @@ target2.x=70
 target2.y=10
 target3.editor.height=700
 target3.editor.width=900
-target3.editor.x=199
-target3.editor.y=275
+target3.editor.x=221
+target3.editor.y=256
 target3.height=50
-target3.name=RockPaperScissors
-target3.naviview.expanded=true
+target3.name=Golf
 target3.showInterface=false
 target3.type=ClassTarget
 target3.typeParameters=
-target3.width=140
-target3.x=70
-target3.y=70
-target4.editor.height=728
-target4.editor.width=646
-target4.editor.x=1
-target4.editor.y=0
+target3.width=80
+target3.x=10
+target3.y=250
+target4.editor.height=700
+target4.editor.width=900
+target4.editor.x=199
+target4.editor.y=275
 target4.height=50
-target4.name=Checkpoint1
-target4.naviview.expanded=false
+target4.name=RockPaperScissors
+target4.naviview.expanded=true
 target4.showInterface=false
 target4.type=ClassTarget
 target4.typeParameters=
-target4.width=100
-target4.x=160
-target4.y=130
-target5.editor.height=712
-target5.editor.width=733
-target5.editor.x=-8
-target5.editor.y=24
+target4.width=140
+target4.x=70
+target4.y=70
+target5.editor.height=728
+target5.editor.width=646
+target5.editor.x=1
+target5.editor.y=0
 target5.height=50
-target5.name=Checkpoint2
+target5.name=Checkpoint1
 target5.naviview.expanded=false
 target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
 target5.width=100
+<<<<<<< HEAD
 target5.x=10
 target5.y=190
+=======
+target5.x=160
+target5.y=130
+target6.editor.height=712
+target6.editor.width=733
+target6.editor.x=-8
+target6.editor.y=24
+target6.height=50
+<<<<<<< HEAD
+target6.name=Checkpoint2
+=======
+target6.name=Checkpoint3
+=======
+>>>>>>> origin/master
 target6.editor.height=700
 target6.editor.width=900
 target6.editor.x=266
 target6.editor.y=24
 target6.height=50
 target6.name=PlayGolf
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 target6.naviview.expanded=false
 target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
+<<<<<<< HEAD
+target6.width=100
+target6.x=10
+target6.y=190
+=======
 target6.width=80
 target6.x=10
 target6.y=260
+>>>>>>> origin/master
 target7.editor.height=700
 target7.editor.width=900
 target7.editor.x=117
