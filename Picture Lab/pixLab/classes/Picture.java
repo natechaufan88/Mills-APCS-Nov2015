@@ -98,6 +98,64 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void keepOnlyBlue() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void negate() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255 - pixelObj.getRed());
+        pixelObj.setGreen(255 - pixelObj.getGreen());
+        pixelObj.setBlue(255 - pixelObj.getBlue());
+      }
+    }  
+  }
+  
+  public void grayscale() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int value = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue()) / 3;
+        pixelObj.setRed(value);
+        pixelObj.setGreen(value);
+        pixelObj.setBlue(value);
+      }
+    }
+  }
+  
+  public void fixUnderwater() {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        if (pixelObj.getBlue() > 160) {
+            if (pixelObj.getRed() > 10 && pixelObj.getRed() < 21) {
+                if (pixelObj.getGreen() > 150 && pixelObj.getGreen() < 180) {
+                    pixelObj.setRed(75);
+                    pixelObj.setGreen(123);
+                    pixelObj.setBlue(207);
+                }
+            }
+        }
+      }
+    }  
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -223,9 +281,9 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("snowman.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.fixUnderwater();
     beach.explore();
   }
   
