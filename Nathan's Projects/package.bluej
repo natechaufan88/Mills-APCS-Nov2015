@@ -3,8 +3,33 @@ objectbench.height=76
 objectbench.width=658
 package.editor.height=400
 package.editor.width=560
+<<<<<<< HEAD
 package.editor.x=117
 package.editor.y=65
+=======
+<<<<<<< HEAD
+package.editor.x=117
+package.editor.y=65
+=======
+<<<<<<< HEAD
+package.editor.x=181
+package.editor.y=236
+=======
+<<<<<<< HEAD
+package.editor.x=292
+package.editor.y=105
+=======
+<<<<<<< HEAD
+package.editor.x=151
+package.editor.y=165
+=======
+package.editor.x=117
+package.editor.y=65
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
+>>>>>>> origin/master
 package.numDependencies=0
 package.numTargets=8
 package.showExtends=true
@@ -73,10 +98,32 @@ target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
 target5.width=100
+<<<<<<< HEAD
+target5.x=10
+target5.y=190
+=======
 target5.x=160
 target5.y=130
 target6.height=50
 target6.name=Checkpoint2
+<<<<<<< HEAD
+=======
+=======
+target6.name=Checkpoint3
+=======
+>>>>>>> origin/master
+target6.editor.height=700
+target6.editor.width=900
+target6.editor.x=266
+target6.editor.y=24
+target6.height=50
+target6.name=PlayGolf
+<<<<<<< HEAD
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
+target6.naviview.expanded=false
+>>>>>>> origin/master
 target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
